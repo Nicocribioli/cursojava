@@ -103,7 +103,7 @@ if(personaje1.vida == 0){
     alert(personaje1.nombre+" ¡Haz vencido al dragon! 1000 monedas de oro se agregaron a tu inventario")
 }
 
-const inventario = ["Nombre:",personaje1.nombre,"Vida:",personaje1.vida,"Ataques:",hechizo.nombre,hechizo.durabilidad,espada.nombre,espada.durabilidad,arco.nombre,arco.durabilidad,"Oro"];
+/* const inventario = ["Nombre:",personaje1.nombre,"Vida:",personaje1.vida,"Ataques:",hechizo.nombre,hechizo.durabilidad,espada.nombre,espada.durabilidad,arco.nombre,arco.durabilidad,"Oro"];
 const tienda = [pocion.nombre,espada.nombre,arco.nombre,hechizo.nombre];
 inventario.push(1000)
 
@@ -226,7 +226,7 @@ do {
 
 
 } while (personaje1.vida > 0);
-
+ */
 
 
 /* function pedirDatos(){
