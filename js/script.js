@@ -39,23 +39,45 @@ const menu = () =>{
     let opcion
 do {
 
-    opcion = prompt("Bienvenido a la tienda de instrumentos ¿Que desea hacer?\n 1- Comprar\n 2- Ver carrito\n 3- Salir");
+    opcion = prompt(`Bienvenido a la tienda de instrumentos ¿Que desea hacer? 
+    
+    1- Comprar 
+    
+    2- Ver carrito 
+    
+    3- Salir`);
     if(opcion == "1" || opcion == "2" || opcion == "3");
 
     switch(opcion){
 
         case "1": 
 
-        let eleccion = prompt("Ingrese el instrumento que desa ver:\n 1- Guitarras\n 2- Bajos")
-        if(eleccion == "1" || eleccion == "2")
+        let eleccion = prompt(`Ingrese el instrumento que desa ver:
+        1- Guitarras
+        
+        2- Bajos`);
+        
+        if(eleccion == "1" || eleccion == "2");
 
         switch(eleccion){
 
             case "1":
                 for (guitarra of guitarras){
-                    alert("Marca: "+guitarra.marca+'\n'+"Modelo: "+guitarra.modelo+'\n'+"Precio: "+guitarra.precio);
+                    alert(`                    
+                    Marca: ${guitarra.marca} 
+
+                    Modelo: ${guitarra.modelo} 
+
+                    Precio: ${guitarra.precio}`);
                 }
-                let compra = prompt('¿Cual guitarra desea agregar al carrito?\n 1- Gibson\n 2- Fender\n 3-Jackson');
+
+                let compra = prompt(`¿Cual guitarra desea agregar al carrito? 
+                1- Gibson
+                
+                2- Fender
+                
+                3-Jackson`);
+
                 if (compra == "1"){
                     carrito.push(productos[0]);
                 }else if (compra == "2"){
@@ -69,9 +91,21 @@ do {
 
             case "2":
                 for (bajo of bajos){
-                    alert("Marca: "+bajo.marca+'\n'+"Modelo: "+bajo.modelo+'\n'+"Precio: "+bajo.precio);
+                    alert(`
+                    Marca: ${bajo.marca} 
+
+                    Modelo: ${bajo.modelo} 
+
+                    Precio: ${bajo.precio}`);
                 }
-                let compra2 = prompt('¿Cual bajo desea agregar al carrito?\n 1- Fender\n 2- Gibson\n 3-Ephiphone');
+                let compra2 = prompt(`¿Cual bajo desea agregar al carrito?
+                
+                1- Fender
+                
+                2- Gibson
+                
+                3-Ephiphone`);
+
                 if (compra2 == "1"){
                     carrito.push(productos[3]);
                 }else if (compra2 == "2"){
@@ -85,12 +119,27 @@ do {
         break;
 
         case "2":
+
             for (precioIva of productos){
                 precioIva.sumaIva();
             }
-        for (items of carrito){
-            alert("Producto: "+items.marca+"\n"+items.modelo+"\n"+"Precio final+iva: "+items.precio);
-        }
+
+            let ul = document.createElement('ul');
+            let inner = "";
+
+            
+            for (items of carrito){
+            inner += `<li>Producto:${items.marca} ${items.modelo}
+                        Precio: ${items.precio}</li>`;
+                        
+            }
+
+
+            ul.innerHTML = inner;
+            document.body.appendChild(ul);
+
+            continuar = false;
+
         break;
 
 
