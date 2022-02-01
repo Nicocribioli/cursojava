@@ -1,4 +1,4 @@
-class Instrumento{
+/* class Instrumento{
 
     constructor(tipo, marca, modelo, precio, stock ){
         this.tipo = tipo;
@@ -129,7 +129,7 @@ do {
 
             
             for (items of carrito){
-            inner += `<li>Producto:${items.marca} ${items.modelo}
+            inner += `<li>Producto: ${items.marca} ${items.modelo}
                         Precio: ${items.precio}</li>`;
                         
             }
@@ -166,4 +166,54 @@ do {
 
 
 
-menu();
+menu(); */
+
+var btnAgregarCarrito = document.getElementsByClassName("comprarItem");
+for (let i = 0; i < btnAgregarCarrito.length; i++) {
+    var boton = btnAgregarCarrito[i];
+    boton.addEventListener("click", btnCarritoClick);
+    
+}
+
+function btnCarritoClick(event){
+    var boton = event.target;
+    var itemTienda = boton.parentElement.parentElement;
+    var nombre = itemTienda.getElementsByClassName("card-title")[0].innerText;
+    var precio = itemTienda.getElementsByClassName("itemPrecio")[0].innerText;
+    var imagen = itemTienda.getElementsByClassName("card-img-top")[0].src;
+    agregarItemCarrito(nombre,precio,imagen);
+
+}
+
+function agregarItemCarrito(nombre,precio,imagen) {
+    var listaCarrito = document.createElement("div");
+    var itemsCarrito = document.getElementsByClassName("items-carrito")[0];
+    var contenidoCarrito = `
+    <div class="offcanvas-body items-carrito">
+    <div>
+        <img class="card-img-top" src="${imagen}" width="100" height="100"> 
+        <span class="card-title">${nombre}</span>
+        <span class="itemPrecio">${precio}</span>
+    </div>
+</div>`;
+    listaCarrito.innerHTML = contenidoCarrito;
+    itemsCarrito.appendChild(listaCarrito)
+}
+
+
+
+function cambiarColor(color){
+    document.getElementById("gbLespaul").src=color;
+}
+
+let radioBlanco = document.getElementById("lesBlanco")
+let radioNegro = document.getElementById("lesNegro");
+
+radioBlanco.addEventListener("click",()=>{
+    cambiarColor("./imagenes/lespaulBlanca.jpg");
+})
+
+radioNegro.addEventListener("click",()=>{
+    cambiarColor("./imagenes/lespaulNegra.jpg");
+})
+
