@@ -1,4 +1,4 @@
-/* class Instrumento{
+class Instrumento{
 
     constructor(tipo, marca, modelo, precio, stock ){
         this.tipo = tipo;
@@ -19,8 +19,6 @@
 }
 
 
-
-var continuar = true;
 const productos = [];
 const carrito = [];
 productos.push (new Instrumento("Guitarra","Gibson","Les Paul",1000,3));
@@ -35,7 +33,7 @@ const bajos = productos.filter(elemento => elemento.tipo === "Bajo");
 console.log(bajos);
 
 
-const menu = () =>{
+/* const menu = () =>{
     let opcion
 do {
 
@@ -160,13 +158,84 @@ do {
 
     
 
-}    
+}     */
+
+var logIn = document.getElementById("btnLogin");
+let inner = "";
+
+
+logIn.addEventListener("click", () =>{
+    let nombre = document.getElementById("nombre").value;
+    let apellido = document.getElementById("apellido").value;
+    let email = document.getElementById("email").value;
+    let password = document.getElementById("password").value;
+    const usuario = {
+        "Nombre": nombre,
+        "Apellido": apellido,
+        "Email": email,
+        "Password": password,
+    }
+    localStorage.setItem("datos", JSON.stringify(usuario));
+    
+    console.log(usuario);
+
+    let formulario = document.getElementById("formulario");
+    formulario.parentElement.removeChild(formulario);
+
+    cartelSaludo(nombre,apellido,email)
+    });
+
+function cartelSaludo(nombre,apellido,email) { 
+    var saludo = document.createElement("div");
+    var mensaje = document.getElementById("logIn");
+    var cartel = `
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">Bienvenido ${nombre} ${apellido} </h5>
+            <h6 class="card-subtitle mb-2 text-muted"></h6>
+            <p class="card-text">Se a enviado un mail de confirmacion a la direccion ${email} </p>
+            <a href="https://outlook.live.com/mail/0/" target="_blank" class="card-link">Abrir correo</a>
+        </div>
+    </div>
+    `;
+    saludo.innerHTML = cartel;
+    mensaje.appendChild(saludo);
+}
 
 
 
 
 
-menu(); */
+
+
+let divGuitarras = document.createElement("div");
+divGuitarras.classList.add("row")
+let tienda = document.getElementById("tienda")
+
+for (guitarra of guitarras){
+    inner += `
+    <div class="col">
+        <div class="card itemTienda" style="width: 18rem;">
+            <img id="gbLespaul" src="./imagenes/lespaulBlanca.jpg" class="card-img-top" alt="Guitarra Les Paul">
+            <div class="card-body detallesItem">
+                <h5 class="card-title">${guitarra.marca} ${guitarra.modelo}</h5>
+                <p class="card-text itemPrecio">${guitarra.precio}</p>
+                <p class="card-text">Elegir color</p>
+                <label for="blanco">Blanca</label>
+                <input type="radio" name="colorLespaul" id="lesBlanco" value="Blanco">
+                <label for="negro">Negro</label>
+                <input type="radio" name="colorLespual" id="lesNegro" value="Negro">
+                <a href="#" class="btn btn-primary mt-3 comprarItem">Agregar al carrito</a>
+            </div>
+        </div>
+    </div>
+    `
+
+}
+divGuitarras.innerHTML = inner;
+tienda.appendChild(divGuitarras); 
+
+
 
 var btnAgregarCarrito = document.getElementsByClassName("comprarItem");
 for (let i = 0; i < btnAgregarCarrito.length; i++) {
@@ -191,13 +260,13 @@ function agregarItemCarrito(nombre,precio,imagen) {
     var contenidoCarrito = `
     <div class="offcanvas-body items-carrito">
     <div>
-        <img class="card-img-top" src="${imagen}" width="100" height="100"> 
+        <img class="card-img-top" src="${imagen}" width="100" height="200"> 
         <span class="card-title">${nombre}</span>
         <span class="itemPrecio">${precio}</span>
     </div>
 </div>`;
     listaCarrito.innerHTML = contenidoCarrito;
-    itemsCarrito.appendChild(listaCarrito)
+    itemsCarrito.appendChild(listaCarrito);
 }
 
 
