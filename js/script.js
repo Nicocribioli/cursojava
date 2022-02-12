@@ -1,11 +1,12 @@
 class Instrumento{
 
-    constructor(tipo, marca, modelo, precio, stock ){
+    constructor(tipo, marca, modelo, precio, stock, imagen){
         this.tipo = tipo;
         this.marca = marca;
         this.modelo = modelo;
         this.precio = precio;
         this.stock = stock;
+        this.imagen = imagen;
     }
 
     sumaIva(){
@@ -21,148 +22,24 @@ class Instrumento{
 
 const productos = [];
 const carrito = [];
-productos.push (new Instrumento("Guitarra","Gibson","Les Paul",1000,3));
-productos.push (new Instrumento("Guitarra","Fender","Stratocaster",800,2));
-productos.push (new Instrumento("Guitarra","Jackson","Dinky",650,3));
+productos.push (new Instrumento("Guitarra","Gibson","Les Paul",800000,3,"imagenes/lespaulBlanca.jpg"));
+productos.push (new Instrumento("Guitarra","Fender","Stratocaster",300000,2,"imagenes/stratoBlanca.jpg"));
+productos.push (new Instrumento("Guitarra","Jackson","Dinky",250000,3,"imagenes/jacksonBlanca.webp"));
 const guitarras = productos.filter(elemento => elemento.tipo === "Guitarra");
 console.log(guitarras);
-productos.push (new Instrumento("Bajo","Fender","Jazz Bazz",1000,1));
-productos.push (new Instrumento("Bajo","Gibson","SG",800,2));
-productos.push (new Instrumento("Bajo","Ephiphone","Thunderbird",500,3));
+productos.push (new Instrumento("Bajo","Fender","Jazz Bazz",500000,1));
+productos.push (new Instrumento("Bajo","Gibson","SG",600000,2));
+productos.push (new Instrumento("Bajo","Ephiphone","Thunderbird",120000,3));
 const bajos = productos.filter(elemento => elemento.tipo === "Bajo");
 console.log(bajos);
 
 
-/* const menu = () =>{
-    let opcion
-do {
 
-    opcion = prompt(`Bienvenido a la tienda de instrumentos ¿Que desea hacer? 
-    
-    1- Comprar 
-    
-    2- Ver carrito 
-    
-    3- Salir`);
-    if(opcion == "1" || opcion == "2" || opcion == "3");
-
-    switch(opcion){
-
-        case "1": 
-
-        let eleccion = prompt(`Ingrese el instrumento que desa ver:
-        1- Guitarras
-        
-        2- Bajos`);
-        
-        if(eleccion == "1" || eleccion == "2");
-
-        switch(eleccion){
-
-            case "1":
-                for (guitarra of guitarras){
-                    alert(`                    
-                    Marca: ${guitarra.marca} 
-
-                    Modelo: ${guitarra.modelo} 
-
-                    Precio: ${guitarra.precio}`);
-                }
-
-                let compra = prompt(`¿Cual guitarra desea agregar al carrito? 
-                1- Gibson
-                
-                2- Fender
-                
-                3-Jackson`);
-
-                if (compra == "1"){
-                    carrito.push(productos[0]);
-                }else if (compra == "2"){
-                    carrito.push(productos[1]);
-                }else{
-                    carrito.push(productos[2]);
-                }
-            break;
-        
-
-
-            case "2":
-                for (bajo of bajos){
-                    alert(`
-                    Marca: ${bajo.marca} 
-
-                    Modelo: ${bajo.modelo} 
-
-                    Precio: ${bajo.precio}`);
-                }
-                let compra2 = prompt(`¿Cual bajo desea agregar al carrito?
-                
-                1- Fender
-                
-                2- Gibson
-                
-                3-Ephiphone`);
-
-                if (compra2 == "1"){
-                    carrito.push(productos[3]);
-                }else if (compra2 == "2"){
-                    carrito.push(productos[4]);
-                }else{
-                    carrito.push(productos[5]);
-                }
-                break;
-        }
-
-        break;
-
-        case "2":
-
-            for (precioIva of productos){
-                precioIva.sumaIva();
-            }
-
-            let ul = document.createElement('ul');
-            let inner = "";
-
-            
-            for (items of carrito){
-            inner += `<li>Producto: ${items.marca} ${items.modelo}
-                        Precio: ${items.precio}</li>`;
-                        
-            }
-
-
-            ul.innerHTML = inner;
-            document.body.appendChild(ul);
-
-            continuar = false;
-
-        break;
-
-
-        case "3":
-            alert("Gracias por su compra");
-            continuar = false;
-            break;
-
-
-    }
-
-
-
-
-}while (continuar == true);
-
-
-
-    
-
-}     */
 
 var logIn = document.getElementById("btnLogin");
 let inner = "";
 
+$(() => {  
 
 logIn.addEventListener("click", () =>{
     let nombre = document.getElementById("nombre").value;
@@ -205,26 +82,25 @@ function cartelSaludo(nombre,apellido,email) {
 
 
 
-
-
-
 let divGuitarras = document.createElement("div");
-divGuitarras.classList.add("row")
-let tienda = document.getElementById("tienda")
+divGuitarras.classList.add("row");
+let tienda = document.getElementById("tienda");
 
 for (guitarra of guitarras){
     inner += `
     <div class="col">
         <div class="card itemTienda" style="width: 18rem;">
-            <img id="gbLespaul" src="./imagenes/lespaulBlanca.jpg" class="card-img-top" alt="Guitarra Les Paul">
+            <img class="imgTienda" src="./${guitarra.imagen}" class="card-img-top" alt="Guitarra Les Paul">
             <div class="card-body detallesItem">
                 <h5 class="card-title">${guitarra.marca} ${guitarra.modelo}</h5>
-                <p class="card-text itemPrecio">${guitarra.precio}</p>
+                <p class="card-text itemPrecio">$${guitarra.precio}</p>
                 <p class="card-text">Elegir color</p>
+                <div id=cambiarColor>
                 <label for="blanco">Blanca</label>
-                <input type="radio" name="colorLespaul" id="lesBlanco" value="Blanco">
+                <input class="colorBlanco" type="radio" name="colorLespaul" value="Blanco">
                 <label for="negro">Negro</label>
-                <input type="radio" name="colorLespual" id="lesNegro" value="Negro">
+                <input class="colorNegro" type="radio" name="colorLespual" value="Negro">
+                </div>
                 <a href="#" class="btn btn-primary mt-3 comprarItem">Agregar al carrito</a>
             </div>
         </div>
@@ -233,7 +109,8 @@ for (guitarra of guitarras){
 
 }
 divGuitarras.innerHTML = inner;
-tienda.appendChild(divGuitarras); 
+$("#tienda").prepend(divGuitarras);
+
 
 
 
@@ -249,7 +126,7 @@ function btnCarritoClick(event){
     var itemTienda = boton.parentElement.parentElement;
     var nombre = itemTienda.getElementsByClassName("card-title")[0].innerText;
     var precio = itemTienda.getElementsByClassName("itemPrecio")[0].innerText;
-    var imagen = itemTienda.getElementsByClassName("card-img-top")[0].src;
+    var imagen = itemTienda.getElementsByClassName("card-img-top")[0].src;  
     agregarItemCarrito(nombre,precio,imagen);
 
 }
@@ -271,18 +148,64 @@ function agregarItemCarrito(nombre,precio,imagen) {
 
 
 
-function cambiarColor(color){
-    document.getElementById("gbLespaul").src=color;
+var clasesImg = document.querySelectorAll(".imgTienda")
+var cambioColor = document.querySelectorAll(".colorBlanco")
+var cambioColor2 = document.querySelectorAll(".colorNegro")
+
+for (let i = 0; i < cambioColor.length; i++) {
+    clasesImg[i].id = "img" + i;
+    
 }
 
-let radioBlanco = document.getElementById("lesBlanco")
-let radioNegro = document.getElementById("lesNegro");
+for (let i = 0; i < cambioColor.length; i++) {
+    cambioColor[i].id = "blanco" + i;
+    
+}
 
-radioBlanco.addEventListener("click",()=>{
+for (let i = 0; i < cambioColor.length; i++) {
+    cambioColor2[i].id = "negro" + i;
+    
+}
+
+function cambiarColor(color){
+    document.getElementById("img0").src=color;
+}
+
+function cambiarColor1(color){
+    document.getElementById("img1").src=color;
+}
+
+function cambiarColor2(color){
+    document.getElementById("img2").src=color;
+}
+
+$("#cambiarColor #blanco0").on("click",()=>{
     cambiarColor("./imagenes/lespaulBlanca.jpg");
 })
 
-radioNegro.addEventListener("click",()=>{
+$("#cambiarColor #negro0").on("click",()=>{
     cambiarColor("./imagenes/lespaulNegra.jpg");
 })
 
+$("#cambiarColor #blanco1").on("click",()=>{
+    cambiarColor1("./imagenes/stratoBlanca.jpg");
+})
+
+$("#cambiarColor #negro1").on("click",()=>{
+    cambiarColor1("./imagenes/stratoNegra.jpg");
+})
+
+
+$("#cambiarColor #blanco2").on("click",()=>{
+    cambiarColor2("./imagenes/jacksonBlanca.webp");
+})
+
+$("#cambiarColor #negro2").on("click",()=>{
+    cambiarColor2("./imagenes/jacksonNegra.jpg");
+}) 
+
+
+
+
+
+})
