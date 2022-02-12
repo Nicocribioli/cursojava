@@ -126,7 +126,7 @@ function btnCarritoClick(event){
     var itemTienda = boton.parentElement.parentElement;
     var nombre = itemTienda.getElementsByClassName("card-title")[0].innerText;
     var precio = itemTienda.getElementsByClassName("itemPrecio")[0].innerText;
-    var imagen = itemTienda.getElementsByClassName("card-img-top")[0].src;  
+    var imagen = itemTienda.getElementsByClassName("imgTienda")[0].src;  
     agregarItemCarrito(nombre,precio,imagen);
 
 }
