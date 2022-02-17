@@ -1,0 +1,45 @@
+body{
+    font-family: 'Lato', cursive;
+    font-weight: 300;
+    background: radial-gradient(circle, rgb(63, 63, 65) 0%, rgb(194, 190, 190)0%); /* BACKGROUND GRADIANT */
+}
+
+header{
+    background-color: rgba(0, 0, 0, 0.829);
+}
+
+.titulo{
+    font-family: 'Bebas neue', cursive;
+    font-weight: 400;
+    font-size: 3rem;
+    margin-left: 3rem;
+    color: #ffffff;
+    letter-spacing: 0.3rem;
+    text-shadow: 1px 1px 0 #080808, 2px 2px 0 #333333, 3px 3px 0 #585858, 4px 4px 0 #808080;
+}
+
+.detallesItem{
+    height: 14rem;
+    margin-top: 1rem;
+    padding-bottom: 3rem;
+    color: white;
+    background-color: rgba(37, 32, 32, 0.459);
+    border: solid rgba(68, 66, 66, 0.233) 0.1rem;
+}
+
+
+.comprarItem{
+    background-color: rgba(20, 58, 182, 0.575);
+    border: rgb(226, 159, 223);
+}
+
+
+.comprarItem:hover{
+    border-color: white;
+    color: white;
+    background-color:rgba(65, 23, 99, 0.781);
+}
+
+.oculto{
+    display: none;
+}

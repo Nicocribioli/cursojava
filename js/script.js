@@ -39,7 +39,12 @@ console.log(bajos);
 var logIn = document.getElementById("btnLogin");
 let inner = "";
 
-$(() => {  
+$(() => {
+
+
+$("#btnregis").on("click",()=>{
+    $("#registrarse").show("slow");
+})
 
 logIn.addEventListener("click", () =>{
     let nombre = document.getElementById("nombre").value;
@@ -66,7 +71,7 @@ function cartelSaludo(nombre,apellido,email) {
     var saludo = document.createElement("div");
     var mensaje = document.getElementById("logIn");
     var cartel = `
-    <div class="card" style="width: 18rem;">
+    <div class="card mb-5" style="width: 18rem;">
         <div class="card-body">
             <h5 class="card-title">Bienvenido ${nombre} ${apellido} </h5>
             <h6 class="card-subtitle mb-2 text-muted"></h6>
@@ -83,17 +88,17 @@ function cartelSaludo(nombre,apellido,email) {
 
 
 let divGuitarras = document.createElement("div");
-divGuitarras.classList.add("row");
+divGuitarras.classList.add("row", "offset-1");
 let tienda = document.getElementById("tienda");
 
 for (guitarra of guitarras){
     inner += `
     <div class="col">
-        <div class="card itemTienda" style="width: 18rem;">
-            <img class="imgTienda" src="./${guitarra.imagen}" class="card-img-top" alt="Guitarra Les Paul">
+        <div class="card itemTienda" style="width: 18rem; height: 20rem;">
+            <img class="imgTienda mt-3" src="./${guitarra.imagen}" class="card-img-top" alt="Guitarra Les Paul">
             <div class="card-body detallesItem">
-                <h5 class="card-title">${guitarra.marca} ${guitarra.modelo}</h5>
-                <p class="card-text itemPrecio">$${guitarra.precio}</p>
+                <h5 class="card-title text-center">${guitarra.marca} ${guitarra.modelo}</h5>
+                <p class="card-text itemPrecio mt-3">$${guitarra.precio}</p>
                 <p class="card-text">Elegir color</p>
                 <div id=cambiarColor>
                 <label for="blanco">Blanca</label>
@@ -101,7 +106,7 @@ for (guitarra of guitarras){
                 <label for="negro">Negro</label>
                 <input class="colorNegro" type="radio" name="colorLespual" value="Negro">
                 </div>
-                <a href="#" class="btn btn-primary mt-3 comprarItem">Agregar al carrito</a>
+                <a href="#" class="btn btn-primary mt-4 comprarItem ms-5">Agregar al carrito</a>
             </div>
         </div>
     </div>
@@ -136,8 +141,8 @@ function agregarItemCarrito(nombre,precio,imagen) {
     var itemsCarrito = document.getElementsByClassName("items-carrito")[0];
     var contenidoCarrito = `
     <div class="offcanvas-body items-carrito">
-    <div>
-        <img class="card-img-top" src="${imagen}" width="100" height="200"> 
+    <div class="d-flex align-items-center">
+        <img class="card-img-top" src="${imagen}" width="200" height="200"> 
         <span class="card-title">${nombre}</span>
         <span class="itemPrecio">${precio}</span>
     </div>
@@ -192,7 +197,7 @@ $("#cambiarColor #blanco1").on("click",()=>{
 })
 
 $("#cambiarColor #negro1").on("click",()=>{
-    cambiarColor1("./imagenes/stratoNegra.jpg");
+    cambiarColor1("./imagenes/stratoNegra.png");
 })
 
 

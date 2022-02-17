@@ -4,13 +4,32 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lato:wght@300&family=Monoton&display=swap"
+        rel="stylesheet">
+        <script src="https://kit.fontawesome.com/b4c77717bc.js" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/style.css">
     <title>Curso JavaScript</title>
 </head>
 <body>
-    <h1 id="title">Curso JavaScript</h1>
-    <div class="usuario col-3" id="logIn">
+    <header class="mb-4">
+        <div class="d-flex align-items-center justify-content-around">
+            <div>
+                <h1 id="title" class="titulo">A TODA PUA</h1>
+            </div>
+            <div>
+                <button class="btn btn-primary offset-8" id="btnregis">Registrarse</button>
+            </div>
+            <div>
+                <button class="btn btn-primary offset-10" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><i class="fa-solid fa-cart-shopping"></i></button>
+            </div>
+        </div>
+
+
+        <div id="registrarse" class="oculto offset-5">
+            <div class="usuario col-3" id="logIn">
         <section id="formulario">
             <div class="form-floating mt-3">
                 <input type="text" class="form-control" id="nombre" placeholder="Nombre" />
@@ -33,21 +52,15 @@
                     </span>
                 </label>
             </div>
-
-            <div class="checkbox">
-                <label><input type="checkbox" id="remember" value="remember-me" class="m-3">
-                    Recordar datos de inicio de sesion.
-                </label>
-            </div>
-
-            <button class="w-100 btn btn-primary" id="btnLogin" type="submit">Iniciar sesión</button>
-
-        </section>
+            <button class="w-100 btn btn-primary mb-5 mt-3" id="btnLogin" type="submit" data-bs-toggle="modal" data-bs-target="#exampleModal">Registrarse</button>
+        </div>
+    </section>
+    </header>
     </div>
     </div>
-    <header class="container offset-10">
+
+    <section class="container offset-10">
         <div>
-            <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Ver carrito</button>
             <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
                 <div class="offcanvas-header">
                     <h5 id="offcanvasRightLabel">Carrito</h5>
@@ -62,12 +75,11 @@
                 </div>
             </div>  
         </div>
-    </header>
+    </section>
 
     <div class="container row" id="tienda">
 
 </div>
-
 
 
 
