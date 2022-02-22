@@ -42,6 +42,7 @@ let inner = "";
 $(() => {
 
 
+
 $("#btnregis").on("click",()=>{
     $("#registrarse").show("slow");
 })
@@ -88,8 +89,45 @@ function cartelSaludo(nombre,apellido,email) {
 
 
 let divGuitarras = document.createElement("div");
-divGuitarras.classList.add("row", "offset-1");
+divGuitarras.classList.add("row","d-flex", "flex-nowrap");
+divGuitarras.setAttribute("id","guitarras");
 let tienda = document.getElementById("tienda");
+
+
+
+let URL = `https://api.mercadolibre.com/items/MLA606746813`;
+
+
+$.ajax({
+    type: "GET",
+    url: URL,
+    success: (response) =>{
+        $("#guitarras").prepend(`
+        <div class="col">
+        <div class="card itemTienda" style="width: 18rem; height: 20rem;">
+            <img class="imgTienda mt-3" src="${response.thumbnail} " class="card-img-top" alt="Guitarra Les Paul">
+            <div class="card-body detallesItem">
+                <h5 class="card-title text-center">${response.title}</h5>
+                <p class="card-text id="itemPrecio" mt-3">$${response.price}</p>
+                <p class="card-text">Elegir color</p>
+                <div id=cambiarColor>
+                <label for="blanco">Blanca</label>
+                <input class="colorBlanco" type="radio" name="colorLespaul" value="Blanco">
+                <label for="negro">Negro</label>
+                <input class="colorNegro" type="radio" name="colorLespual" value="Negro">
+                </div>
+                <a href="#" class="btn btn-primary mt-4 comprarItem ms-5">Agregar al carrito</a>
+            </div>
+        </div>
+    </div>
+
+        `)
+    }
+})
+
+
+
+
 
 for (guitarra of guitarras){
     inner += `
@@ -98,7 +136,7 @@ for (guitarra of guitarras){
             <img class="imgTienda mt-3" src="./${guitarra.imagen}" class="card-img-top" alt="Guitarra Les Paul">
             <div class="card-body detallesItem">
                 <h5 class="card-title text-center">${guitarra.marca} ${guitarra.modelo}</h5>
-                <p class="card-text itemPrecio mt-3">$${guitarra.precio}</p>
+                <p class="card-text id="itemPrecio" mt-3">$</p>
                 <p class="card-text">Elegir color</p>
                 <div id=cambiarColor>
                 <label for="blanco">Blanca</label>
@@ -115,6 +153,12 @@ for (guitarra of guitarras){
 }
 divGuitarras.innerHTML = inner;
 $("#tienda").prepend(divGuitarras);
+
+
+
+
+
+
 
 
 
@@ -208,6 +252,7 @@ $("#cambiarColor #blanco2").on("click",()=>{
 $("#cambiarColor #negro2").on("click",()=>{
     cambiarColor2("./imagenes/jacksonNegra.jpg");
 }) 
+
 
 
 
