@@ -224,12 +224,14 @@ function agregarItemCarrito(nombre,precio,imagen) {
     listaCarrito.innerHTML = contenidoCarrito;
     itemsCarrito.append(listaCarrito);
     listaCarrito.getElementsByClassName("eliminarItem")[0].addEventListener("click", eliminarItem);
-    sumarTotal(precioTotal);
+    sumarTotal(precioTotal, precioItem);
 }
 
-function sumarTotal(precioTotal){
-    document.getElementsByClassName("carritoTotal")[0].innerHTML =   " TOTAL " + " $ "+ precioTotal
-    console.log(precioTotal)
+function sumarTotal(precioTotal, precioItem){
+    total = document.getElementsByClassName("carritoTotal")[0].innerHTML;
+    totalSuma = parseFloat(total.replace("$", ""))
+    document.getElementsByClassName("carritoTotal")[0].innerHTML =  totalSuma + (precioItem * 1)
+    console.log(totalSuma);
 }
 
 /* ELIMINAR ITEMS DEL CARRITO */
@@ -268,7 +270,7 @@ function actualizarCarrito(){
         total = total + (precioItem * cantidadItem);
 
     }
-    document.getElementsByClassName("carritoTotal")[0].innerText = "TOTAL " + " $ " + total;
+    document.getElementsByClassName("carritoTotal")[0].innerText = " $ " + total;
 }
 
 let cantidadInput = document.getElementsByClassName("carritoCantidad")
