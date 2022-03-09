@@ -212,13 +212,14 @@ function agregarItemCarrito(nombre,precio,imagen) {
             <img class="card-img-top" src="${imagen}" width="200" height="200"> 
             <span class="cart-title me-3">${nombre}</span>
             <span class="itemPrecio">${precio}</span>
-            <input class="carritoCantidad" type="number" value="2">
+            <input class="carritoCantidad" type="number" value="1">
             <button class="btn btn-danger eliminarItem justify" type="button">X</button>
         </div>
     </div>`;
     listaCarrito.innerHTML = contenidoCarrito;
     itemsCarrito.append(listaCarrito);
     listaCarrito.getElementsByClassName("eliminarItem")[0].addEventListener("click", eliminarItem);
+    actualizarCarrito();
 }
 
 
@@ -260,7 +261,6 @@ function actualizarCarrito(){
         total = total + (precioItem * cantidadItem);
 
     }
-
     document.getElementsByClassName("carritoTotal")[0].innerText = "TOTAL " + " $ " + total;
 }
 
