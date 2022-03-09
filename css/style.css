@@ -27,6 +27,30 @@ header{
     border: solid rgba(68, 66, 66, 0.233) 0.1rem;
 }
 
+.carritoTitulo{
+    background-color: #000000;
+    color: white;
+    margin-left: 9rem;
+}
+
+.carritoCantidad{
+    width: 2.3rem;
+    padding: 0.1rem;
+    margin-left: 1rem;
+    align-self: center;
+}
+
+.eliminarItem{
+    padding: 0.1rem;
+    align-self: flex-end;
+}
+
+.carritoTotal{
+    align-self:flex-end;
+    margin-right: 1rem;
+    color: white;
+    background-color: #000000;
+}
 
 .comprarItem{
     background-color: rgba(20, 58, 182, 0.575);
@@ -43,3 +67,46 @@ header{
 .oculto{
     display: none;
 }
+
+.gridTienda{
+    display: grid;
+    height: auto;
+    width: auto;
+    justify-items: center;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-row-gap: 17rem;
+    grid-template-areas: 
+    
+    "guitarra0 guitarra1 guitarra2"
+    "bajo0 bajo1 bajo2"
+
+    
+    ;
+}
+
+.guitarra0{
+    grid-area: guitarra0;
+}
+
+.bajo0{
+    grid-area: bajo0;
+}
+
+.guitarra1{
+    grid-area: guitarra1;
+}
+
+.bajo1{
+    grid-area: bajo1;
+}
+
+.guitarra2{
+    grid-area: guitarra2;
+}
+
+.bajo3{
+    grid-area: bajo2;
+}
+
+

@@ -23,29 +23,35 @@ class Instrumento{
 const productos = [];
 const carrito = [];
 productos.push (new Instrumento("Guitarra","Gibson","Les Paul",800000,3,"imagenes/lespaulBlanca.jpg"));
-productos.push (new Instrumento("Guitarra","Fender","Stratocaster",300000,2,"imagenes/stratoBlanca.jpg"));
+productos.push (new Instrumento("Guitarra","Fender","Strato",300000,2,"imagenes/stratoBlanca.jpg"));
 productos.push (new Instrumento("Guitarra","Jackson","Dinky",250000,3,"imagenes/jacksonBlanca.webp"));
 const guitarras = productos.filter(elemento => elemento.tipo === "Guitarra");
 console.log(guitarras);
-productos.push (new Instrumento("Bajo","Fender","Jazz Bazz",500000,1));
-productos.push (new Instrumento("Bajo","Gibson","SG",600000,2));
-productos.push (new Instrumento("Bajo","Ephiphone","Thunderbird",120000,3));
+productos.push (new Instrumento("Bajo","Fender","Jazz Bass",500000,1,"imagenes/jazzBassBlanco.jpg"));
+productos.push (new Instrumento("Bajo","Fender","Jaguar",600000,2,"imagenes/jaguarBlanco.webp"));
+productos.push (new Instrumento("Bajo","Ephi","Thunder",120000,3,"imagenes/thunderBlanco.webp"));
 const bajos = productos.filter(elemento => elemento.tipo === "Bajo");
 console.log(bajos);
 
 
 
 
-var logIn = document.getElementById("btnLogin");
-let inner = "";
+
 
 $(() => {
 
+
+    /* FORMULARIO LOG IN */
+
+
+    var logIn = document.getElementById("btnLogin");
+    let inner = "";
 
 
 $("#btnregis").on("click",()=>{
     $("#registrarse").show("slow");
 })
+
 
 logIn.addEventListener("click", () =>{
     let nombre = document.getElementById("nombre").value;
@@ -63,7 +69,11 @@ logIn.addEventListener("click", () =>{
     console.log(usuario);
 
     let formulario = document.getElementById("formulario");
+    let btnregis = document.getElementById("btnregis");
     formulario.parentElement.removeChild(formulario);
+    btnregis.parentElement.removeChild(btnregis);
+    
+
 
     cartelSaludo(nombre,apellido,email)
     });
@@ -72,7 +82,7 @@ function cartelSaludo(nombre,apellido,email) {
     var saludo = document.createElement("div");
     var mensaje = document.getElementById("logIn");
     var cartel = `
-    <div class="card mb-5" style="width: 18rem;">
+    <div class="card mb-5 oculto" id="saludo" style="width: 18rem;">
         <div class="card-body">
             <h5 class="card-title">Bienvenido ${nombre} ${apellido} </h5>
             <h6 class="card-subtitle mb-2 text-muted"></h6>
@@ -83,19 +93,16 @@ function cartelSaludo(nombre,apellido,email) {
     `;
     saludo.innerHTML = cartel;
     mensaje.appendChild(saludo);
+    
 }
 
 
 
+$("#btnLogin").on("click", ()=>{
+    $("#saludo").show("slow");
+})
 
-let divGuitarras = document.createElement("div");
-divGuitarras.classList.add("row","d-flex", "flex-nowrap");
-divGuitarras.setAttribute("id","guitarras");
-let tienda = document.getElementById("tienda");
-
-
-
-let URL = `https://api.mercadolibre.com/items/MLA606746813`;
+/* let URL = `https://api.mercadolibre.com/items/MLA606746813`;
 
 
 $.ajax({
@@ -123,20 +130,23 @@ $.ajax({
 
         `)
     }
-})
+}) */  
 
 
+/* GENERAR DOM DE LOS PRODUCTOS */
 
+let divGuitarras = document.createElement("div");
+let tienda = document.getElementById("tienda");
 
 
 for (guitarra of guitarras){
-    inner += `
-    <div class="col">
+    $("#tienda").append(`
+    <div class="guitarras">
         <div class="card itemTienda" style="width: 18rem; height: 20rem;">
             <img class="imgTienda mt-3" src="./${guitarra.imagen}" class="card-img-top" alt="Guitarra Les Paul">
             <div class="card-body detallesItem">
                 <h5 class="card-title text-center">${guitarra.marca} ${guitarra.modelo}</h5>
-                <p class="card-text id="itemPrecio" mt-3">$</p>
+                <p class="card-text itemPrecio" mt-3">$${guitarra.precio}</p>
                 <p class="card-text">Elegir color</p>
                 <div id=cambiarColor>
                 <label for="blanco">Blanca</label>
@@ -144,24 +154,60 @@ for (guitarra of guitarras){
                 <label for="negro">Negro</label>
                 <input class="colorNegro" type="radio" name="colorLespual" value="Negro">
                 </div>
-                <a href="#" class="btn btn-primary mt-4 comprarItem ms-5">Agregar al carrito</a>
+                <a class="btn btn-primary mt-4 comprarItem ms-5">Agregar al carrito</a>
             </div>
         </div>
     </div>
-    `
+    `)
 
 }
-divGuitarras.innerHTML = inner;
-$("#tienda").prepend(divGuitarras);
+
+var gridGuitarras = document.querySelectorAll(".guitarras");
+for (let i = 0; i < gridGuitarras.length; i++) {
+    gridGuitarras[i].classList = "guitarra" + i;
+    
+}
+
+
+
+let divBajos = document.getElementById("bajos")
+
+
+for (bajo of bajos){
+    $("#tienda").append(`
+    <div class="bajos">
+        <div class="card itemTienda" style="width: 18rem; height: 20rem;">
+            <img class="imgTienda mt-3" src="./${bajo.imagen}" class="card-img-top" alt="Guitarra Les Paul">
+            <div class="card-body detallesItem">
+                <h5 class="card-title text-center">${bajo.marca} ${bajo.modelo}</h5>
+                <p class="card-text itemPrecio" mt-3">$${bajo.precio}</p>
+                <p class="card-text">Elegir color</p>
+                <div id=cambiarColor>
+                <label for="blanco">Blanca</label>
+                <input class="colorBlanco" type="radio" name="colorLespaul" value="Blanco">
+                <label for="negro">Negro</label>
+                <input class="colorNegro" type="radio" name="colorLespual" value="Negro">
+                </div>
+                <a class="btn btn-primary mt-4 comprarItem ms-5">Agregar al carrito</a>
+            </div>
+        </div>
+    </div>
+    `)
+
+}
+
+var gridBajos = document.querySelectorAll(".bajos");
+for (let i = 0; i < gridBajos.length; i++) {
+    gridBajos[i].classList = "bajo" + i;
+    
+}
 
 
 
 
 
 
-
-
-
+/* AGREGAR ITEMS AL CARRITO */
 
 var btnAgregarCarrito = document.getElementsByClassName("comprarItem");
 for (let i = 0; i < btnAgregarCarrito.length; i++) {
@@ -171,35 +217,99 @@ for (let i = 0; i < btnAgregarCarrito.length; i++) {
 }
 
 function btnCarritoClick(event){
-    var boton = event.target;
-    var itemTienda = boton.parentElement.parentElement;
-    var nombre = itemTienda.getElementsByClassName("card-title")[0].innerText;
-    var precio = itemTienda.getElementsByClassName("itemPrecio")[0].innerText;
-    var imagen = itemTienda.getElementsByClassName("imgTienda")[0].src;  
+    let boton = event.target;
+    let itemTienda = boton.parentElement.parentElement;
+    let nombre = itemTienda.getElementsByClassName("card-title")[0].innerText;
+    let precio = itemTienda.getElementsByClassName("itemPrecio")[0].innerText;
+    let imagen = itemTienda.getElementsByClassName("imgTienda")[0].src;  
     agregarItemCarrito(nombre,precio,imagen);
 
 }
 
 function agregarItemCarrito(nombre,precio,imagen) {
-    var listaCarrito = document.createElement("div");
-    var itemsCarrito = document.getElementsByClassName("items-carrito")[0];
-    var contenidoCarrito = `
-    <div class="offcanvas-body items-carrito">
-    <div class="d-flex align-items-center">
-        <img class="card-img-top" src="${imagen}" width="200" height="200"> 
-        <span class="card-title">${nombre}</span>
-        <span class="itemPrecio">${precio}</span>
-    </div>
-</div>`;
+    let listaCarrito = document.createElement("div");
+    listaCarrito.classList.add("contenidoItems");
+    let itemsCarrito = document.getElementsByClassName("items-carrito")[0];
+    let nombreItems = itemsCarrito.getElementsByClassName("cart-title")
+    for (let i = 0; i < nombreItems.length; i++) {
+        if (nombreItems[i].innerText == nombre){
+            console.log(nombreItems)
+            return;
+        }
+    }
+    console.log(nombreItems)
+    let contenidoCarrito = `
+    <div class="offcanvas-body item-carrito">
+        <div class="d-flex align-items-center justify-content-end">
+            <img class="card-img-top" src="${imagen}" width="200" height="200"> 
+            <span class="cart-title me-3">${nombre}</span>
+            <span class="itemPrecio">${precio}</span>
+            <input class="carritoCantidad" type="number" value="1">
+            <button class="btn btn-danger eliminarItem justify" type="button">X</button>
+        </div>
+    </div>`;
     listaCarrito.innerHTML = contenidoCarrito;
-    itemsCarrito.appendChild(listaCarrito);
+    itemsCarrito.append(listaCarrito);
+    listaCarrito.getElementsByClassName("eliminarItem")[0].addEventListener("click", eliminarItem);
+}
+
+let btnEliminar = document.getElementsByClassName("eliminarItem");
+
+
+/* ELIMINAR ITEMS DEL CARRITO */
+
+for (let i = 0; i < btnEliminar.length; i++) {
+    let borrar = btnEliminar[i];
+    borrar.addEventListener("click", eliminarItem);
+    
+}
+
+function eliminarItem(event){
+    let borrarClick = event.target
+    borrarClick.parentElement.parentElement.remove();
+    actualizarCarrito();
 }
 
 
+/* ACTUALIZAR EL TOTAL CARRITO */
 
-var clasesImg = document.querySelectorAll(".imgTienda")
-var cambioColor = document.querySelectorAll(".colorBlanco")
-var cambioColor2 = document.querySelectorAll(".colorNegro")
+function actualizarCarrito(){
+    let carritoContainer = document.getElementsByClassName("contenidoCarrito")[0];
+    let filasCarrito = carritoContainer.getElementsByClassName("item-carrito");
+    let total = 0;
+    for (let i = 0; i < filasCarrito.length; i++) {
+
+        let filaCarrito = filasCarrito[i];
+        let elementoPrecio = filaCarrito.getElementsByClassName("itemPrecio")[0];
+        let elementoCantidad = filaCarrito.getElementsByClassName("carritoCantidad")[0];
+        console.log(elementoPrecio, elementoCantidad);
+
+        let precioItem = parseFloat(elementoPrecio.innerText.replace("$", ""));
+        let cantidadItem = elementoCantidad.value
+        total = total + (precioItem * cantidadItem);
+    }
+
+    document.getElementsByClassName("carritoTotal")[0].innerText = "TOTAL " + " $ " + total;
+}
+
+/* let cantidadCarrito = document.getElementsByClassName("carritoCantidad")
+for (let i = 0; i < cantidadCarrito.length; i++) {
+    var input = cantidadCarrito[i];
+    input.addEventListener("change", cantidadCambiada())
+}
+
+function cantidadCambiada(event){
+    var input = event.target;
+    if (isNaN(input.value) || input.value <= 0){
+        input.value = 1;
+    }
+    actualizarCarrito();
+} */
+
+/* CAMBIAR DE COLOR LOS PRODUCTOS */
+let clasesImg = document.querySelectorAll(".imgTienda")
+let cambioColor = document.querySelectorAll(".colorBlanco")
+let cambioColor2 = document.querySelectorAll(".colorNegro")
 
 for (let i = 0; i < cambioColor.length; i++) {
     clasesImg[i].id = "img" + i;
@@ -253,9 +363,41 @@ $("#cambiarColor #negro2").on("click",()=>{
     cambiarColor2("./imagenes/jacksonNegra.jpg");
 }) 
 
+function cambiarColor3(color){
+    document.getElementById("img3").src=color;
+}
 
+function cambiarColor4(color){
+    document.getElementById("img4").src=color;
+}
 
+function cambiarColor5(color){
+    document.getElementById("img5").src=color;
+}
 
+$("#cambiarColor #blanco3").on("click",()=>{
+    cambiarColor3("./imagenes/jazzBassBlanco.jpg");
+})
+
+$("#cambiarColor #negro3").on("click",()=>{
+    cambiarColor3("./imagenes/jazzBassNegro.webp");
+})
+
+$("#cambiarColor #blanco4").on("click",()=>{
+    cambiarColor4("./imagenes/jaguarBlanco.webp");
+})
+
+$("#cambiarColor #negro4").on("click",()=>{
+    cambiarColor4("./imagenes/jaguarNegro.jpg");
+})
+
+$("#cambiarColor #blanco5").on("click",()=>{
+    cambiarColor5("./imagenes/thunderBlanco.webp");
+})
+
+$("#cambiarColor #negro5").on("click",()=>{
+    cambiarColor5("./imagenes/thunderNegro.webp");
+})
 
 
 })
