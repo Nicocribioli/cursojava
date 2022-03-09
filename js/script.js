@@ -224,11 +224,11 @@ function agregarItemCarrito(nombre,precio,imagen) {
     listaCarrito.innerHTML = contenidoCarrito;
     itemsCarrito.append(listaCarrito);
     listaCarrito.getElementsByClassName("eliminarItem")[0].addEventListener("click", eliminarItem);
-    sumarTotal(precioTotal, precioItem);
+    sumarTotal(precioTotal);
 }
 
 function sumarTotal(precioTotal){
-    document.getElementsByClassName("carritoTotal")[0].innerHTML = precioTotal
+    document.getElementsByClassName("carritoTotal")[0].innerHTML =   " TOTAL " + " $ "+ precioTotal
     console.log(precioTotal)
 }
 
