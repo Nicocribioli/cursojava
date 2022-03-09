@@ -115,7 +115,7 @@ for (guitarra of guitarras){
             <img class="imgTienda mt-3" src="./${guitarra.imagen}" class="card-img-top" alt="Guitarra Les Paul">
             <div class="card-body detallesItem">
                 <h5 class="card-title text-center">${guitarra.marca} ${guitarra.modelo}</h5>
-                <p class="card-text itemPrecio" mt-3">$${guitarra.precio}</p>
+                <p class="card-text itemPrecio mt-3">$${guitarra.precio}</p>
                 <p class="card-text">Elegir color</p>
                 <div id=cambiarColor>
                 <div class="form-check form-check-inline">
@@ -153,7 +153,7 @@ for (bajo of bajos){
             <img class="imgTienda mt-3" src="./${bajo.imagen}" class="card-img-top" alt="Guitarra Les Paul">
             <div class="card-body detallesItem">
                 <h5 class="card-title text-center">${bajo.marca} ${bajo.modelo}</h5>
-                <p class="card-text itemPrecio" mt-3">$${bajo.precio}</p>
+                <p class="card-text itemPrecio mt-3">$${bajo.precio}</p>
                 <p class="card-text">Elegir color</p>
                 <div id=cambiarColor>
                 <div class="form-check form-check-inline">
@@ -202,7 +202,11 @@ function btnCarritoClick(event){
     agregarItemCarrito(nombre,precio,imagen);
 }
 
+
+
 function agregarItemCarrito(nombre,precio,imagen) {
+    let precioItem = parseFloat(precio.replace("$", ""));
+    let precioTotal = 0;
     let listaCarrito = document.createElement("div");
     listaCarrito.classList.add("contenidoItems");
     let itemsCarrito = document.getElementsByClassName("items-carrito")[0];
@@ -211,19 +215,22 @@ function agregarItemCarrito(nombre,precio,imagen) {
         <div class="d-flex align-items-center justify-content-end">
             <img class="card-img-top" src="${imagen}" width="200" height="200"> 
             <span class="cart-title me-3">${nombre}</span>
-            <span class="itemPrecio">${precio}</span>
+            <span class="itemPrecio1">${precio}</span>
             <input class="carritoCantidad" type="number" value="1">
             <button class="btn btn-danger eliminarItem justify" type="button">X</button>
         </div>
     </div>`;
+    precioTotal = precioTotal + (precioItem * 1);
     listaCarrito.innerHTML = contenidoCarrito;
     itemsCarrito.append(listaCarrito);
     listaCarrito.getElementsByClassName("eliminarItem")[0].addEventListener("click", eliminarItem);
-    actualizarCarrito();
+    sumarTotal(precioTotal, precioItem);
 }
 
-
-
+function sumarTotal(precioTotal){
+    document.getElementsByClassName("carritoTotal")[0].innerHTML = precioTotal
+    console.log(precioTotal)
+}
 
 /* ELIMINAR ITEMS DEL CARRITO */
 
@@ -251,7 +258,7 @@ function actualizarCarrito(){
     for (let i = 0; i < filasCarrito.length; i++) {
 
         let filaCarrito = filasCarrito[i];
-        let elementoPrecio = filaCarrito.getElementsByClassName("itemPrecio")[0];
+        let elementoPrecio = filaCarrito.getElementsByClassName("itemPrecio1")[0];
         let elementoCantidad = filaCarrito.getElementsByClassName("carritoCantidad")[0];
         console.log(elementoPrecio, elementoCantidad);
 
