@@ -96,41 +96,10 @@ function cartelSaludo(nombre,apellido,email) {
     
 }
 
-
-
 $("#btnLogin").on("click", ()=>{
     $("#saludo").show("slow");
 })
 
-/* let URL = `https://api.mercadolibre.com/items/MLA606746813`;
-
-
-$.ajax({
-    type: "GET",
-    url: URL,
-    success: (response) =>{
-        $("#guitarras").prepend(`
-        <div class="col">
-        <div class="card itemTienda" style="width: 18rem; height: 20rem;">
-            <img class="imgTienda mt-3" src="${response.thumbnail} " class="card-img-top" alt="Guitarra Les Paul">
-            <div class="card-body detallesItem">
-                <h5 class="card-title text-center">${response.title}</h5>
-                <p class="card-text id="itemPrecio" mt-3">$${response.price}</p>
-                <p class="card-text">Elegir color</p>
-                <div id=cambiarColor>
-                <label for="blanco">Blanca</label>
-                <input class="colorBlanco" type="radio" name="colorLespaul" value="Blanco">
-                <label for="negro">Negro</label>
-                <input class="colorNegro" type="radio" name="colorLespual" value="Negro">
-                </div>
-                <a href="#" class="btn btn-primary mt-4 comprarItem ms-5">Agregar al carrito</a>
-            </div>
-        </div>
-    </div>
-
-        `)
-    }
-}) */  
 
 
 /* GENERAR DOM DE LOS PRODUCTOS */
@@ -223,28 +192,19 @@ function btnCarritoClick(event){
     let precio = itemTienda.getElementsByClassName("itemPrecio")[0].innerText;
     let imagen = itemTienda.getElementsByClassName("imgTienda")[0].src;  
     agregarItemCarrito(nombre,precio,imagen);
-
 }
 
 function agregarItemCarrito(nombre,precio,imagen) {
     let listaCarrito = document.createElement("div");
     listaCarrito.classList.add("contenidoItems");
     let itemsCarrito = document.getElementsByClassName("items-carrito")[0];
-    let nombreItems = itemsCarrito.getElementsByClassName("cart-title")
-    for (let i = 0; i < nombreItems.length; i++) {
-        if (nombreItems[i].innerText == nombre){
-            console.log(nombreItems)
-            return;
-        }
-    }
-    console.log(nombreItems)
     let contenidoCarrito = `
     <div class="offcanvas-body item-carrito">
         <div class="d-flex align-items-center justify-content-end">
             <img class="card-img-top" src="${imagen}" width="200" height="200"> 
             <span class="cart-title me-3">${nombre}</span>
             <span class="itemPrecio">${precio}</span>
-            <input class="carritoCantidad" type="number" value="1">
+            <input class="carritoCantidad" type="number" value="2">
             <button class="btn btn-danger eliminarItem justify" type="button">X</button>
         </div>
     </div>`;
@@ -253,10 +213,12 @@ function agregarItemCarrito(nombre,precio,imagen) {
     listaCarrito.getElementsByClassName("eliminarItem")[0].addEventListener("click", eliminarItem);
 }
 
-let btnEliminar = document.getElementsByClassName("eliminarItem");
+
 
 
 /* ELIMINAR ITEMS DEL CARRITO */
+
+let btnEliminar = document.getElementsByClassName("eliminarItem");
 
 for (let i = 0; i < btnEliminar.length; i++) {
     let borrar = btnEliminar[i];
@@ -286,25 +248,28 @@ function actualizarCarrito(){
 
         let precioItem = parseFloat(elementoPrecio.innerText.replace("$", ""));
         let cantidadItem = elementoCantidad.value
+        console.log(precioItem * cantidadItem)
         total = total + (precioItem * cantidadItem);
+
     }
 
     document.getElementsByClassName("carritoTotal")[0].innerText = "TOTAL " + " $ " + total;
 }
 
-/* let cantidadCarrito = document.getElementsByClassName("carritoCantidad")
-for (let i = 0; i < cantidadCarrito.length; i++) {
-    var input = cantidadCarrito[i];
-    input.addEventListener("change", cantidadCambiada())
+let cantidadInput = document.getElementsByClassName("carritoCantidad").value;
+for (let i = 0; i < cantidadInput.length; i++) {
+    var input = cantidadInput[i];
+    input.addEventListener("change" , cantidadCambiada);
 }
 
 function cantidadCambiada(event){
     var input = event.target;
     if (isNaN(input.value) || input.value <= 0){
-        input.value = 1;
+        input.value = 1
     }
-    actualizarCarrito();
-} */
+    actualizarCarrito()
+}
+
 
 /* CAMBIAR DE COLOR LOS PRODUCTOS */
 let clasesImg = document.querySelectorAll(".imgTienda")
@@ -380,7 +345,7 @@ $("#cambiarColor #blanco3").on("click",()=>{
 })
 
 $("#cambiarColor #negro3").on("click",()=>{
-    cambiarColor3("./imagenes/jazzBassNegro.webp");
+    cambiarColor3("./imagenes/jazzBassNegro.jpg");
 })
 
 $("#cambiarColor #blanco4").on("click",()=>{
