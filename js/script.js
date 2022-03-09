@@ -118,10 +118,14 @@ for (guitarra of guitarras){
                 <p class="card-text itemPrecio" mt-3">$${guitarra.precio}</p>
                 <p class="card-text">Elegir color</p>
                 <div id=cambiarColor>
-                <label for="blanco">Blanca</label>
-                <input class="colorBlanco" type="radio" name="colorLespaul" value="Blanco">
-                <label for="negro">Negro</label>
-                <input class="colorNegro" type="radio" name="colorLespual" value="Negro">
+                <div class="form-check form-check-inline">
+                <input class="form-check-input colorBlanco" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                <label class="form-check-label" for="inlineRadio1">Blanco</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input colorNegro" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                <label class="form-check-label" for="inlineRadio2">Negro</label>
+            </div>
                 </div>
                 <a class="btn btn-primary mt-4 comprarItem ms-5">Agregar al carrito</a>
             </div>
@@ -152,10 +156,14 @@ for (bajo of bajos){
                 <p class="card-text itemPrecio" mt-3">$${bajo.precio}</p>
                 <p class="card-text">Elegir color</p>
                 <div id=cambiarColor>
-                <label for="blanco">Blanca</label>
-                <input class="colorBlanco" type="radio" name="colorLespaul" value="Blanco">
-                <label for="negro">Negro</label>
-                <input class="colorNegro" type="radio" name="colorLespual" value="Negro">
+                <div class="form-check form-check-inline">
+                <input class="form-check-input colorBlanco" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                <label class="form-check-label" for="inlineRadio1">Blanco</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input colorNegro" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                <label class="form-check-label" for="inlineRadio2">Negro</label>
+            </div>
                 </div>
                 <a class="btn btn-primary mt-4 comprarItem ms-5">Agregar al carrito</a>
             </div>
@@ -256,7 +264,7 @@ function actualizarCarrito(){
     document.getElementsByClassName("carritoTotal")[0].innerText = "TOTAL " + " $ " + total;
 }
 
-let cantidadInput = document.getElementsByClassName("carritoCantidad").value;
+let cantidadInput = document.getElementsByClassName("carritoCantidad")
 for (let i = 0; i < cantidadInput.length; i++) {
     var input = cantidadInput[i];
     input.addEventListener("change" , cantidadCambiada);

@@ -1,7 +1,17 @@
 body{
-    font-family: 'Lato', cursive;
+    font-family: 'Nunito Sans', sans-serif;
     font-weight: 300;
     background: radial-gradient(circle, rgb(63, 63, 65) 0%, rgb(194, 190, 190)0%); /* BACKGROUND GRADIANT */
+}
+
+
+footer{
+    margin-top: 15rem;
+    display: flex;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.829);
+    color: white;
+    
 }
 
 header{
