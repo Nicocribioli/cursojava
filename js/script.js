@@ -210,6 +210,7 @@ function agregarItemCarrito(nombre,precio,imagen) {
     let listaCarrito = document.createElement("div");
     listaCarrito.classList.add("contenidoItems");
     let itemsCarrito = document.getElementsByClassName("items-carrito")[0];
+    
     let contenidoCarrito = `
     <div class="offcanvas-body item-carrito">
         <div class="d-flex align-items-center justify-content-end">
@@ -224,10 +225,10 @@ function agregarItemCarrito(nombre,precio,imagen) {
     listaCarrito.innerHTML = contenidoCarrito;
     itemsCarrito.append(listaCarrito);
     listaCarrito.getElementsByClassName("eliminarItem")[0].addEventListener("click", eliminarItem);
-    sumarTotal(precioTotal, precioItem);
+    sumarTotal(precioItem);
 }
 
-function sumarTotal(precioTotal, precioItem){
+function sumarTotal(precioItem){
     total = document.getElementsByClassName("carritoTotal")[0].innerHTML;
     totalSuma = parseFloat(total.replace("$", ""))
     document.getElementsByClassName("carritoTotal")[0].innerHTML =  totalSuma + (precioItem * 1)
@@ -262,11 +263,8 @@ function actualizarCarrito(){
         let filaCarrito = filasCarrito[i];
         let elementoPrecio = filaCarrito.getElementsByClassName("itemPrecio1")[0];
         let elementoCantidad = filaCarrito.getElementsByClassName("carritoCantidad")[0];
-        console.log(elementoPrecio, elementoCantidad);
-
         let precioItem = parseFloat(elementoPrecio.innerText.replace("$", ""));
         let cantidadItem = elementoCantidad.value
-        console.log(precioItem * cantidadItem)
         total = total + (precioItem * cantidadItem);
 
     }
